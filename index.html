@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerador de Orçamento Profissional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Versão interativa para edição -->
+    <div class="budget-container" id="budget-editor">
+        <!-- Cabeçalho com informações da empresa -->
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://via.placeholder.com/150x80?text=LOGO" alt="Logo" class="company-logo">
+                <div class="company-details">
+                    <div class="company-name" id="company-name">NOME DA SUA EMPRESA</div>
+                    <div class="company-data">
+                        <div id="company-address">Rua Exemplo, 123 - Centro - Rio de Janeiro/RJ</div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div><strong>WhatsApp:</strong> <span id="company-whatsapp">(21) 90000-0000</span></div>
+                <div><strong>Data:</strong> <span id="current-date"></span></div>
+            </div>
+        </div>
+        
+        <!-- Título do orçamento -->
+        <div class="budget-title">ORÇAMENTO</div>
+        
+        <!-- Informações do cliente -->
+        <div class="form-group">
+            <div>
+                <label for="client-name">Cliente:</label>
+                <input type="text" id="client-name" placeholder="Nome completo ou razão social">
+            </div>
+            <div>
+                <label for="client-phone">Telefone:</label>
+                <input type="tel" id="client-phone" placeholder="(00) 00000-0000">
+            </div>
+            <div>
+                <label for="valid-until">Validade do orçamento:</label>
+                <input type="date" id="valid-until">
+            </div>
+        </div>
+        
+        <!-- Tabela de itens -->
+        <table id="items-table">
+            <thead>
+                <tr>
+                    <th width="15%">Item</th>
+                    <th width="35%">Descrição</th>
+                    <th width="10%">Qtd</th>
+                    <th width="15%">Valor Unit.</th>
+                    <th width="15%">Total</th>
+                    <th width="10%">Ação</th>
+                </tr>
+            </thead>
+            <tbody id="items-body">
+                <!-- Itens serão adicionados aqui -->
+            </tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="4">TOTAL</td>
+                    <td id="grand-total">R$ 0,00</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        
+        <!-- Botão para adicionar itens -->
+        <button class="add-btn" id="add-item">+ Adicionar Item</button>
+        
+        <!-- Formas de pagamento e garantia -->
+        <div class="payment-warranty">
+            <div>
+                <label for="payment-method">Forma de Pagamento:</label>
+                <select id="payment-method">
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Pix">Pix</option>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Cartão de Débito">Cartão de Débito</option>
+                    <option value="Boleto">Boleto</option>
+                    <option value="Transferência">Transferência Bancária</option>
+                </select>
+            </div>
+            <div>
+                <label for="warranty-period">Garantia (dias):</label>
+                <input type="number" id="warranty-period" min="0" value="30">
+            </div>
+        </div>
+        
+        <!-- Assinatura -->
+        <div class="signature">
+            <div>Rio de Janeiro, <span id="signature-date"></span></div>
+            <div class="signature-line">Assinado digitalmente #<span id="signature-hash"></span></div>
+            <div id="signature-company-name">NOME DA SUA EMPRESA</div>
+        </div>
+        
+        <!-- Rodapé -->
+        <div class="footer">Página 1 de 1</div>
+        
+        <!-- Botões de ação -->
+        <div class="buttons">
+            <button class="pdf-btn" id="generate-pdf">Gerar PDF</button>
+            <button class="share-btn" id="share-whatsapp">Enviar por WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Versão para PDF (inicialmente oculta) -->
+    <div id="budget-pdf" class="pdf-version" style="display: none; width: 210mm; padding: 20mm; font-family: Arial;">
+        <div class="pdf-content">
+            <!-- Conteúdo do PDF (mesma estrutura mas sem inputs) -->
+        </div>
+    </div>
+
+    <!-- Créditos (só aparece no site) -->
+    <div class="credits">
+        Aplicação criada por 360 Brave. (<a href="https://360brave.com" target="_blank">https://360brave.com</a>)
+    </div>
+
+    <!-- Bibliotecas externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Nosso script -->
+    <script src="script.js"></script>
+</body>
+</html>
